@@ -1,5 +1,10 @@
 body {
+  background-image: url("./assets/SVG's/body_background.svg");
   background-color: var(--background_color);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 header {
@@ -16,6 +21,11 @@ header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+
+main {
+  display: flex;
+  justify-content: center;
 }
 
 footer {
@@ -37,9 +47,15 @@ footer img {
   height: 32px;
 }
 
-.footer_text{
-    font-family: "Poppins";
-    font-weight: bold;
-    color: #FD5B4F;
-    font-size: 16px;
+.footer_text {
+  font-family: "Poppins";
+  font-weight: bold;
+  color: #fd5b4f;
+  font-size: 16px;
+}
+
+.twenty_pokemons_section {
+  max-width: calc(1920px * 0.66);
+  width: 100%;
+  background-color: var(--alternativ_action_color);
 }

@@ -7,18 +7,14 @@
     width: 312px;
     margin-left: auto;
     margin-right: 16px;
-    border: 3px solid var(--grey_color);
+    border: 3px solid var(--light_grey_color);
     border-radius: 5px;
+    font-family: "Poppins";
 }
 
 .search_bar:focus{
-    height: 40px;
-    width: 312px;
-    margin-left: auto;
-    margin-right: 16px;
-    border: 3px solid var(--grey_color);
-    border-radius: 5px;
-    outline-color: black;
+    border: 3px solid black;
+    outline: none;
 }
 
 .search_button{
@@ -37,4 +33,14 @@
     height: 20px;
     width: 20px;
     color: var(--action_color);
+}
+
+.small_pokemon_card{
+    width: 200px;
+    height: 284px;
+}
+
+.small_card_image{
+    width: 64px;
+    height: 64px;
 }
