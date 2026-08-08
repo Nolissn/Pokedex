@@ -1,11 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokedex</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokédex</title>
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="/assets/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="Pokedex" />
+    <link rel="manifest" href="/assets/favicon/site.webmanifest" />
+
+    <link rel="stylesheet" href="./styles/variables.css" />
+    <link rel="stylesheet" href="./styles/standard.css" />
+    <link rel="stylesheet" href="./styles/fonts.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles/assets.css" />
+
+    <script src="./scripts.js" defer></script>
+    <script src="./scripts/template.js" defer></script>
+  </head>
+  <body onload="init()">
+    <header>
+        <div class="header_positioning_div">
+            <a href="./index.html">
+                <img class="header_icon" src="./assets/SVG's/pokeball_and_text.svg" alt="Pokedex Logo" />
+            </a>
+            <input id="SearchInputId" name="search-input" type="text" data-id="search-input" placeholder="Search" class="search_bar">
+            <button class="search_button">
+                <img class="search_button_icon" src="./assets/SVG's/search_icon.svg" alt="Search">
+            </button>
+        </div>
+    </header>
+    <main id="mainId">
+    </main>
+    <footer>
+      <svg width="0" height="0">
+        <clipPath id="footer_clip" clipPathUnits="objectBoundingBox">
+          <path d="
+          M 0 0.2031
+          Q 0.25 0 0.5 0
+          Q 0.75 0 1 0.2031
+          L 1 1
+          L 0 1
+          Z
+          "></path>
+        </clipPath>
+      </svg>
+      <img src="./assets/SVG's/footer_logo.svg" alt="Developer Akademie Logo">
+      <span class="footer_text">© 2023 Developer Akademie GmbH</span>
+    </footer>
+  </body>
 </html>
