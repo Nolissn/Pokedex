@@ -1,9 +1,7 @@
 body {
   background-image: url("./assets/SVG's/body_background.svg");
   background-color: var(--background_color);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-attachment: fixed;
 }
 
