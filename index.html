@@ -26,9 +26,11 @@
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./styles/assets.css" />
+    <link rel="stylesheet" href="./styles/pokemon_types.css" />
 
-    <script src="./scripts.js" defer></script>
     <script src="./scripts/template.js" defer></script>
+    <script src="./scripts/custom_helper_functions.js" defer></script>
+    <script src="./scripts.js" defer></script>
   </head>
   <body onload="init()">
     <header>
@@ -43,6 +45,8 @@
         </div>
     </header>
     <main id="mainId">
+      <section id="pokemon_section" class="pokemon_section"></section>
+      <button onclick="loadPokemons(findLastLoadedPokemonId() + 1, 20)" class="load_more_button">Load more</button>
     </main>
     <footer>
       <svg width="0" height="0">

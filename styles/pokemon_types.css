@@ -1,0 +1,143 @@
+.normal {
+  background-color: #a8a77a;
+}
+
+.fire {
+  background-color: #ee8130;
+}
+
+.water {
+  background-color: #6390f0;
+}
+
+.electric {
+  background-color: #f7d02c;
+}
+
+.grass {
+  background-color: #7ac74c;
+}
+
+.ice {
+  background-color: #96d9d6;
+}
+
+.fighting {
+  background-color: #c22e28;
+}
+
+.poison {
+  background-color: #a33ea1;
+}
+
+.ground {
+  background-color: #e2bf65;
+}
+
+.flying {
+  background-color: #a98ff3;
+}
+
+.psychic {
+  background-color: #f95587;
+}
+
+.bug {
+  background-color: #a6b91a;
+}
+
+.rock {
+  background-color: #b6a136;
+}
+
+.ghost {
+  background-color: #735797;
+}
+
+.dragon {
+  background-color: #6f35fc;
+}
+
+.dark {
+  background-color: #705746;
+}
+
+.steel {
+  background-color: #b7b7ce;
+}
+
+.fairy {
+  background-color: #d685ad;
+}
+
+.pokemon_card_type_general.normal {
+  background-color: #7e7d5c;
+}
+
+.pokemon_card_type_general.fire {
+  background-color: #b26124;
+}
+
+.pokemon_card_type_general.water {
+  background-color: #4a6cb4;
+}
+
+.pokemon_card_type_general.electric {
+  background-color: #b99c21;
+}
+
+.pokemon_card_type_general.grass {
+  background-color: #5c9539;
+}
+
+.pokemon_card_type_general.ice {
+  background-color: #70a3a0;
+}
+
+.pokemon_card_type_general.fighting {
+  background-color: #92221e;
+}
+
+.pokemon_card_type_general.poison {
+  background-color: #7a2e79;
+}
+
+.pokemon_card_type_general.ground {
+  background-color: #aa8f4c;
+}
+
+.pokemon_card_type_general.flying {
+  background-color: #7f6bb6;
+}
+
+.pokemon_card_type_general.psychic {
+  background-color: #bb4065;
+}
+
+.pokemon_card_type_general.bug {
+  background-color: #7c8b14;
+}
+
+.pokemon_card_type_general.rock {
+  background-color: #887928;
+}
+
+.pokemon_card_type_general.ghost {
+  background-color: #564171;
+}
+
+.pokemon_card_type_general.dragon {
+  background-color: #5328bd;
+}
+
+.pokemon_card_type_general.dark {
+  background-color: #544134;
+}
+
+.pokemon_card_type_general.steel {
+  background-color: #89899a;
+}
+
+.pokemon_card_type_general.fairy {
+  background-color: #a06482;
+}

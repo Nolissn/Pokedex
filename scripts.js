@@ -1,27 +1,23 @@
 function init() {
-  loadTwentyPokemons(0, 20);
+  loadPokemons(1, 20)
 }
 
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
-let sectioncounter = 0;
 
-async function loadTwentyPokemons(start, end) {
-  let response = await fetch(`${BASE_URL}?limit=${end}&offset=${start}`);
-  let information = await response.json();
-  console.log(information);
-  loadOnePokemonSection(information);
+async function loadPokemons(start, amound) {
+  let response = await fetch(`${BASE_URL}?limit=${amound}&offset=${start - 1}`);
+  let basicInformation = await response.json();
+  console.log(basicInformation);
+  await loadOnePokemonSection(basicInformation);
 }
 
-function loadOnePokemonSection(information) {
-  sectioncounter++;
-  let main = document.getElementById("mainId");
-  main.innerHTML = getOnePokemonSectionTemplate(sectioncounter);
-  let currentsection = document.getElementById(
-    "twenty_pokemons_section_" + sectioncounter,
-  );
+async function loadOnePokemonSection(basicInformation) {
+  let section = document.getElementById("pokemon_section");
 
-  for (let index = 1; index < information.results.length + 1; index++) {
-    const pokemon = information.results[index - 1];
-    currentsection.innerHTML += getPokemonCardInSectionTemplate(index, pokemon);
+  for (let index = 0; index < basicInformation.results.length; index++) {
+    let detailResponse = await fetch(basicInformation.results[index].url);
+    let pokemonDetails = await detailResponse.json();
+    console.log(pokemonDetails);
+    section.innerHTML += getPokemonCardInSectionTemplate(pokemonDetails);
   }
 }
