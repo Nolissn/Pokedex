@@ -1,5 +1,5 @@
 body {
-  background-image: url("./assets/SVG's/body_background.svg");
+  /* background-image: url("./assets/SVG's/body_background.svg"); */
   background-color: var(--background_color);
   background-repeat: repeat;
   background-attachment: fixed;

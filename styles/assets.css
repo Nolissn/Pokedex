@@ -82,8 +82,13 @@
 
 .pokemon_card_name {
   font-family: "Poppins";
-  font-size: 22px;
+  font-size: clamp(12px, calc(173px / (var(--name_length) * 0.62)), 22px);
   font-weight: 400;
+  white-space: nowrap;
+  max-width: 173px;
+  height: 33.33px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .pokemon_card_id {
