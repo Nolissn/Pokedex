@@ -5,21 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokédex</title>
 
-    <link
-      rel="icon"
-      type="image/png"
-      href="/assets/favicon/favicon-96x96.png"
-      sizes="96x96"
-    />
-    <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg" />
     <link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/assets/favicon/apple-touch-icon.png"
-    />
-    <meta name="apple-mobile-web-app-title" content="Pokedex" />
-    <link rel="manifest" href="/assets/favicon/site.webmanifest" />
+    <meta name="apple-mobile-web-app-title" content="Pokédex" />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicon/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicon/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicon/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/favicon/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/favicon/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/favicon/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicon/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicon/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="/assets/favicon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="/assets/favicon/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
 
     <link rel="stylesheet" href="./styles/variables.css" />
     <link rel="stylesheet" href="./styles/standard.css" />
@@ -34,34 +39,56 @@
   </head>
   <body onload="init()">
     <header>
-        <div class="header_positioning_div">
-            <a href="./index.html">
-                <img class="header_icon" src="./assets/SVG's/pokeball_and_text.svg" alt="Pokedex Logo" />
-            </a>
-            <input id="SearchInputId" name="search-input" type="text" data-id="search-input" placeholder="Search" class="search_bar">
-            <button class="search_button">
-                <img class="search_button_icon" src="./assets/SVG's/search_icon.svg" alt="Search">
-            </button>
-        </div>
+      <div class="header_positioning_div">
+        <a href="./index.html">
+          <img
+            class="header_icon"
+            src="./assets/SVG's/pokeball_and_text.svg"
+            alt="Pokedex Logo"
+          />
+        </a>
+        <input
+          id="SearchInputId"
+          name="search-input"
+          type="text"
+          data-id="search-input"
+          placeholder="Search"
+          class="search_bar"
+        />
+        <button class="search_button">
+          <img
+            class="search_button_icon"
+            src="./assets/SVG's/search_icon.svg"
+            alt="Search"
+          />
+        </button>
+      </div>
     </header>
     <main id="mainId">
       <section id="pokemon_section" class="pokemon_section"></section>
-      <button onclick="loadPokemons(findLastLoadedPokemonId() + 1, 20)" class="load_more_button">Load more</button>
+      <button
+        onclick="loadPokemons(findLastLoadedPokemonId() + 1, 20)"
+        class="load_more_button"
+      >
+        Load more
+      </button>
     </main>
     <footer>
       <svg width="0" height="0">
         <clipPath id="footer_clip" clipPathUnits="objectBoundingBox">
-          <path d="
+          <path
+            d="
           M 0 0.2031
           Q 0.25 0 0.5 0
           Q 0.75 0 1 0.2031
           L 1 1
           L 0 1
           Z
-          "></path>
+          "
+          ></path>
         </clipPath>
       </svg>
-      <img src="./assets/SVG's/footer_logo.svg" alt="Developer Akademie Logo">
+      <img src="./assets/SVG's/footer_logo.svg" alt="Developer Akademie Logo" />
       <span class="footer_text">© 2023 Developer Akademie GmbH</span>
     </footer>
   </body>
