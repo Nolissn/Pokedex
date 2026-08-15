@@ -136,3 +136,38 @@
 .load_more_button:hover {
   background-color: var(--action_color);
 }
+
+.load_more_button:disabled {
+  background-color: var(--light_grey_color);
+  cursor: default;
+}
+
+.loadingScreenDialog {
+  background-image: url(../assets/SVG/simple_pokeball_icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 120px;
+  width: 120px;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  animation: spin 1.5s linear infinite;
+  outline: none;
+}
+
+.loadingScreenDialog::backdrop {
+  background-color: #00000066;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

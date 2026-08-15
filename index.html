@@ -34,7 +34,6 @@
     <link rel="stylesheet" href="./styles/pokemon_types.css" />
 
     <script src="./scripts/template.js" defer></script>
-    <script src="./scripts/custom_helper_functions.js" defer></script>
     <script src="./scripts.js" defer></script>
   </head>
   <body onload="init()">
@@ -43,7 +42,7 @@
         <a href="./index.html">
           <img
             class="header_icon"
-            src="./assets/SVG's/pokeball_and_text.svg"
+            src="./assets/SVG/pokeball_and_text.svg"
             alt="Pokedex Logo"
           />
         </a>
@@ -58,7 +57,7 @@
         <button class="search_button">
           <img
             class="search_button_icon"
-            src="./assets/SVG's/search_icon.svg"
+            src="./assets/SVG/search_icon.svg"
             alt="Search"
           />
         </button>
@@ -67,11 +66,13 @@
     <main id="mainId">
       <section id="pokemon_section" class="pokemon_section"></section>
       <button
+        id="loadMoreButtonId"
         onclick="loadPokemons(findLastLoadedPokemonId() + 1, 20)"
         class="load_more_button"
       >
         Load more
       </button>
+      <dialog tabindex="-1" id="loadingScreenDialogId" class="loadingScreenDialog"></dialog>
     </main>
     <footer>
       <svg width="0" height="0">
@@ -88,7 +89,7 @@
           ></path>
         </clipPath>
       </svg>
-      <img src="./assets/SVG's/footer_logo.svg" alt="Developer Akademie Logo" />
+      <img src="./assets/SVG/footer_logo.svg" alt="Developer Akademie Logo" />
       <span class="footer_text">© 2023 Developer Akademie GmbH</span>
     </footer>
   </body>
