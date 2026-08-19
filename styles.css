@@ -1,10 +1,13 @@
-body {
-  background-color: var(--background_color);
-  background-repeat: repeat;
-  background-attachment: fixed;
+html {
+  scrollbar-gutter: stable;
 }
 
-body:has(.loadingScreenDialog[open]) {
+body {
+  background-color: var(--background_color);
+}
+
+body:has(.loadingScreenDialog[open]),
+body:has(.pokemon_details_dialog[open]) {
   overflow: hidden;
 }
 

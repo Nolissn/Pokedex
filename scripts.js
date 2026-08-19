@@ -43,10 +43,25 @@ function makeFirstCharUpperCase(rawstring) {
 
 function findLastLoadedPokemonId() {
   const section = document.getElementById("pokemon_section");
-  let numb = section.childNodes.length;
-  let specificButton = document.getElementById("pokemonCardId" + numb);
+  const cardButtons = section.querySelectorAll(".small_pokemon_card");
+  let specificButton = cardButtons[cardButtons.length - 1];
   let specificID = specificButton.lastElementChild.innerHTML;
   specificID = specificID.replaceAll("#", "");
   specificID = parseInt(specificID);
   return specificID;
+}
+
+async function showPokemonDetailsDialog(DialogId){
+  openLoadingSpinner();
+  try{
+    const individualPokemonDialog = document.getElementById("individualPokemonDialogId" + DialogId);
+    let specificPokemonDetailsResponse = await fetch(`${BASE_URL}/${DialogId}`);
+    let specificPokemonDetails = await specificPokemonDetailsResponse.json();
+    console.log(specificPokemonDetails);
+    individualPokemonDialog.innerHTML = getPokemonDetailsDialogTemplate(specificPokemonDetails);
+    individualPokemonDialog.showModal();
+  }
+  finally{
+    closeLoadingSpinner();
+  }
 }

@@ -70,74 +70,92 @@
   background-color: #d685ad;
 }
 
-.pokemon_card_type_general.normal {
+.pokemon_card_type_general.normal,
+.big_pokemon_card_type_general.normal {
   background-color: #7e7d5c;
 }
 
-.pokemon_card_type_general.fire {
+.pokemon_card_type_general.fire,
+.big_pokemon_card_type_general.fire {
   background-color: #b26124;
 }
 
-.pokemon_card_type_general.water {
+.pokemon_card_type_general.water,
+.big_pokemon_card_type_general.water {
   background-color: #4a6cb4;
 }
 
-.pokemon_card_type_general.electric {
+.pokemon_card_type_general.electric,
+.big_pokemon_card_type_general.electric {
   background-color: #b99c21;
 }
 
-.pokemon_card_type_general.grass {
+.pokemon_card_type_general.grass,
+.big_pokemon_card_type_general.grass {
   background-color: #5c9539;
 }
 
-.pokemon_card_type_general.ice {
+.pokemon_card_type_general.ice,
+.big_pokemon_card_type_general.ice {
   background-color: #70a3a0;
 }
 
-.pokemon_card_type_general.fighting {
+.pokemon_card_type_general.fighting,
+.big_pokemon_card_type_general.fighting {
   background-color: #92221e;
 }
 
-.pokemon_card_type_general.poison {
+.pokemon_card_type_general.poison,
+.big_pokemon_card_type_general.poison {
   background-color: #7a2e79;
 }
 
-.pokemon_card_type_general.ground {
+.pokemon_card_type_general.ground,
+.big_pokemon_card_type_general.ground {
   background-color: #aa8f4c;
 }
 
-.pokemon_card_type_general.flying {
+.pokemon_card_type_general.flying,
+.big_pokemon_card_type_general.flying {
   background-color: #7f6bb6;
 }
 
-.pokemon_card_type_general.psychic {
+.pokemon_card_type_general.psychic,
+.big_pokemon_card_type_general.psychic {
   background-color: #bb4065;
 }
 
-.pokemon_card_type_general.bug {
+.pokemon_card_type_general.bug,
+.big_pokemon_card_type_general.bug {
   background-color: #7c8b14;
 }
 
-.pokemon_card_type_general.rock {
+.pokemon_card_type_general.rock,
+.big_pokemon_card_type_general.rock {
   background-color: #887928;
 }
 
-.pokemon_card_type_general.ghost {
+.pokemon_card_type_general.ghost,
+.big_pokemon_card_type_general.ghost {
   background-color: #564171;
 }
 
-.pokemon_card_type_general.dragon {
+.pokemon_card_type_general.dragon,
+.big_pokemon_card_type_general.dragon {
   background-color: #5328bd;
 }
 
-.pokemon_card_type_general.dark {
+.pokemon_card_type_general.dark,
+.big_pokemon_card_type_general.dark {
   background-color: #544134;
 }
 
-.pokemon_card_type_general.steel {
+.pokemon_card_type_general.steel,
+.big_pokemon_card_type_general.steel {
   background-color: #89899a;
 }
 
-.pokemon_card_type_general.fairy {
+.pokemon_card_type_general.fairy,
+.big_pokemon_card_type_general.fairy {
   background-color: #a06482;
 }
