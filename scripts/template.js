@@ -35,7 +35,7 @@ function getPokemonCardInSectionTemplate(pokemonDetails) {
     ></dialog>`;
 }
 
-function getPokemonDetailsDialogTemplate(specificPokemonDetails) {
+function getPokemonDetailsDialogTemplate(specificPokemonDetails, individualPokemonDialog) {
   return /* HTML */ `
     <div class="big_pokemon_card_image_circle">
       <img
@@ -150,6 +150,24 @@ function getPokemonDetailsDialogTemplate(specificPokemonDetails) {
         <span class="big_card_stats_text">${specificPokemonDetails.weight / 10} kg</span>
       </div>
     </section>
-    <footer class="big_pokemon_card_footer"></footer>
+    <footer class="big_pokemon_card_footer">
+    <nav class="big_card_navbar">
+    <button onclick="RenderPreviosPokemonDialog(${specificPokemonDetails.id}, this)" class="big_card_nav_bar_button ${specificPokemonDetails.types[0].type.name}">
+    <img
+            class="big_card_nav_image"
+            src="./assets/SVG/arrow-left.svg"
+            alt="Weight Icon"
+          />
+    </button>
+    <p class="big_card_nav_id_text">${specificPokemonDetails.id.toString()}/1025</p>
+    <button onclick="renderNextPokemonDialog(${specificPokemonDetails.id}, this)" class="big_card_nav_bar_button ${specificPokemonDetails.types[0].type.name}">
+    <img
+            class="big_card_nav_image"
+            src="./assets/SVG/arrow-right.svg"
+            alt="Weight Icon"
+          />
+    </button>
+    </nav>
+    </footer>
   `;
 }

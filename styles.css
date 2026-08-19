@@ -4,6 +4,8 @@ html {
 
 body {
   background-color: var(--background_color);
+  background-image: url(./assets/png/body_background.png);
+  background-repeat: repeat;
 }
 
 body:has(.loadingScreenDialog[open]),

@@ -57,11 +57,38 @@ async function showPokemonDetailsDialog(DialogId){
     const individualPokemonDialog = document.getElementById("individualPokemonDialogId" + DialogId);
     let specificPokemonDetailsResponse = await fetch(`${BASE_URL}/${DialogId}`);
     let specificPokemonDetails = await specificPokemonDetailsResponse.json();
-    console.log(specificPokemonDetails);
-    individualPokemonDialog.innerHTML = getPokemonDetailsDialogTemplate(specificPokemonDetails);
+    individualPokemonDialog.innerHTML = getPokemonDetailsDialogTemplate(specificPokemonDetails, individualPokemonDialog);
     individualPokemonDialog.showModal();
   }
   finally{
+    closeLoadingSpinner();
+  }
+}
+
+async function renderNextPokemonDialog(id, buttonElement){
+  const nextId = id === 1025 ? 1 : id + 1;
+  const currentDialog = buttonElement.closest("dialog");
+  openLoadingSpinner();
+  try {
+    let specificPokemonDetailsResponse = await fetch(`${BASE_URL}/${nextId}`);
+    let specificPokemonDetails = await specificPokemonDetailsResponse.json();
+    currentDialog.className = "pokemon_details_dialog " + specificPokemonDetails.types[0].type.name;
+    currentDialog.innerHTML = getPokemonDetailsDialogTemplate(specificPokemonDetails);
+  } finally {
+    closeLoadingSpinner();
+  }
+}
+
+async function RenderPreviosPokemonDialog(id, buttonElement){
+  const previousId = id === 1 ? 1025 : id - 1;
+  const currentDialog = buttonElement.closest("dialog");
+  openLoadingSpinner();
+  try {
+    let specificPokemonDetailsResponse = await fetch(`${BASE_URL}/${previousId}`);
+    let specificPokemonDetails = await specificPokemonDetailsResponse.json();
+    currentDialog.className = "pokemon_details_dialog " + specificPokemonDetails.types[0].type.name;
+    currentDialog.innerHTML = getPokemonDetailsDialogTemplate(specificPokemonDetails);
+  } finally {
     closeLoadingSpinner();
   }
 }
