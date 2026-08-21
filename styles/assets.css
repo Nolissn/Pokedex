@@ -340,3 +340,78 @@
   font-size: 16px;
   font-weight: 500;
 }
+
+.pokemon_section_search_success{
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  max-width: 1267.2px;
+  width: 100%;
+  background-color: var(--secondary_color);
+  border-radius: 16px;
+  flex: 1 1 auto;
+  padding: 64px;
+}
+
+.search_success_text {
+  font-family: "Poppins";
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--action_color);
+  margin-bottom: 32px;
+}
+
+.pokemon_section_search_fail{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 1267.2px;
+  width: 100%;
+  background-color: var(--secondary_color);
+  border-radius: 16px;
+  height: fit-content;
+  padding: 64px;
+}
+
+.search_fail_content_positioning_div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--action_color);
+  border-radius: 16px;
+  height: 700px;
+  width: 100%;
+}
+
+.search_fail_image {
+  width: 400px;
+  height: 400px;
+  margin-right: 24px;
+}
+
+.search_fail_text_positioning_div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.search_fail_status_code {
+  font-family: "Poppins";
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--secondary_color);
+}
+
+.search_fail_message {
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: 400;
+  max-width: 400px;
+  color: var(--secondary_color);
+}
+
+.search_fail_highlight {
+  color: var(--alternativ_action_color);
+}

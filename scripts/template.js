@@ -20,11 +20,9 @@ function getPokemonCardInSectionTemplate(pokemonDetails) {
         >
           ${makeFirstCharUpperCase(pokemonDetails.types[0].type.name)}
         </div>
-        ${
-          pokemonDetails.types.length === 2
-            ? `<div class="pokemon_card_type_general ${pokemonDetails.types[1].type.name}">${makeFirstCharUpperCase(pokemonDetails.types[1].type.name)}</div>`
-            : ""
-        }
+        ${pokemonDetails.types.length === 2
+          ? `<div class="pokemon_card_type_general ${pokemonDetails.types[1].type.name}">${makeFirstCharUpperCase(pokemonDetails.types[1].type.name)}</div>`
+          : ""}
       </section>
       <span class="pokemon_card_id">#${pokemonDetails.id}</span>
     </button>
@@ -35,7 +33,10 @@ function getPokemonCardInSectionTemplate(pokemonDetails) {
     ></dialog>`;
 }
 
-function getPokemonDetailsDialogTemplate(specificPokemonDetails, individualPokemonDialog) {
+function getPokemonDetailsDialogTemplate(
+  specificPokemonDetails,
+  individualPokemonDialog,
+) {
   return /* HTML */ `
     <div class="big_pokemon_card_image_circle">
       <img
@@ -170,4 +171,34 @@ function getPokemonDetailsDialogTemplate(specificPokemonDetails, individualPokem
     </nav>
     </footer>
   `;
+}
+
+function getSearchFailResultTemplate(statusCode, userInput) {
+  return /* HTML */ `
+    <div class="search_fail_content_positioning_div">
+      <img
+        class="search_fail_image"
+        src="./assets/SVG/search_fail_pikachu.svg"
+        alt="Search Fail Image"
+      />
+      <div class="search_fail_text_positioning_div">
+        <span class="search_fail_status_code">Statuscode "<span class="search_fail_highlight">${statusCode}</span>"</span>
+        <p class="search_fail_message">The Pokémon "<span class="search_fail_highlight">${userInput}</span>" was not found. Enter something else and try again!</p>
+      </div>
+    </div>
+  `;
+}
+
+function getSuccessSearchResultTemplate() {
+  return /* HTML */ `<span class="search_success_text">Success! here is your Pokémon:</span>`;
+}
+
+function getRefreshPageButtonTemplate() {
+  return /* HTML */ `<button
+        id="RefreshButtonId"
+        onclick="location.reload()"
+        class="load_more_button"
+      >
+        Refresh Page
+      </button>`
 }
