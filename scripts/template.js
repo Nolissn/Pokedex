@@ -2,12 +2,15 @@ function getPokemonCardInSectionTemplate(pokemonDetails) {
   return `<button
       onclick="showPokemonDetailsDialog(${pokemonDetails.id})"
       id="pokemonCardId${pokemonDetails.id}"
+      data-id="card"
+      aria-label="View details for ${makeFirstCharUpperCase(pokemonDetails.name)}"
       class="small_pokemon_card ${pokemonDetails.types[0].type.name}"
     >
       <img
         class="small_card_image"
+        data-id="card-image"
         src="${pokemonDetails.sprites.other["official-artwork"].front_default}"
-        alt="Pokémon Image"
+        alt="${makeFirstCharUpperCase(pokemonDetails.name)} artwork"
       />
       <span
         class="pokemon_card_name"
@@ -31,17 +34,38 @@ function getPokemonCardInSectionTemplate(pokemonDetails) {
     <dialog
       closedby="any"
       id="individualPokemonDialogId${pokemonDetails.id}"
+      data-id="dialog"
+      aria-label="${makeFirstCharUpperCase(pokemonDetails.name)} details"
       class="pokemon_details_dialog ${pokemonDetails.types[0].type.name}"
     ></dialog>`;
 }
 
 function getPokemonDetailsDialogTemplate(specificPokemonDetails) {
   return `
+    <button
+      onclick="this.closest('dialog').close()"
+      data-id="close-dialog-button"
+      aria-label="Close dialog"
+      class="close_dialog_button"
+    >
+      <img
+        class="close_dialog_icon_default"
+        src="./assets/SVG/close_x_button.svg"
+        alt="Close"
+      />
+      <img
+        class="close_dialog_icon_hover"
+        src="./assets/SVG/close_x_button_hover.svg"
+        alt="Close"
+      />
+    </button>
+    <div data-id="overlay-pokemon-name">
     <div class="big_card_image_circle">
       <img
         class="big_card_image"
+        data-id="dialog-image"
         src="${specificPokemonDetails.sprites.other["official-artwork"].front_default}"
-        alt="Pokémon Image"
+        alt="${makeFirstCharUpperCase(specificPokemonDetails.name)} artwork"
       ></img>
     </div>
     <span class="big_card_name"
@@ -154,12 +178,14 @@ function getPokemonDetailsDialogTemplate(specificPokemonDetails) {
       <nav class="big_card_nav_bar">
         <button
           onclick="renderPreviousPokemonDialog(${specificPokemonDetails.id}, this)"
+          data-id="prev-button"
+          aria-label="Previous Pokémon"
           class="big_card_nav_bar_button ${specificPokemonDetails.types[0].type.name}"
         >
           <img
             class="big_card_nav_image"
             src="./assets/SVG/arrow-left.svg"
-            alt="Weight Icon"
+            alt=""
           />
         </button>
         <p class="big_card_nav_id_text">
@@ -167,16 +193,19 @@ function getPokemonDetailsDialogTemplate(specificPokemonDetails) {
         </p>
         <button
           onclick="renderNextPokemonDialog(${specificPokemonDetails.id}, this)"
+          data-id="next-button"
+          aria-label="Next Pokémon"
           class="big_card_nav_bar_button ${specificPokemonDetails.types[0].type.name}"
         >
           <img
             class="big_card_nav_image"
             src="./assets/SVG/arrow-right.svg"
-            alt="Weight Icon"
+            alt=""
           />
         </button>
       </nav>
     </footer>
+    </div>
   `;
 }
 
@@ -186,14 +215,14 @@ function getSearchFailResultTemplate(statusCode, userInput) {
       <img
         class="search_fail_image"
         src="./assets/SVG/search_fail_pikachu.svg"
-        alt="Search Fail Image"
+        alt="Detective Pikachu looking through a magnifying lens"
       />
       <div class="search_fail_text_positioning_div">
         <span class="search_fail_status_code"
           >Statuscode "<span class="search_fail_highlight">${statusCode}</span
           >"</span
         >
-        <p class="search_fail_message">
+        <p data-id="not-found" class="search_fail_message">
           The Pokémon "<span class="search_fail_highlight">${userInput}</span>"
           was not found. Enter something else and try again!
         </p>
@@ -212,6 +241,7 @@ function getRefreshPageButtonTemplate() {
   return `<button
     id="RefreshButtonId"
     onclick="location.reload()"
+    aria-label="Refresh page"
     class="load_more_button"
   >
     Refresh Page

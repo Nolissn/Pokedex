@@ -57,46 +57,52 @@ async function fetchPokemonDetails(pokemonId) {
   return await response.json();
 }
 
-async function showPokemonDetailsDialog(dialogId) {
-  openLoadingSpinner();
+async function fetchPokemonDetailsWithDelayedSpinner(pokemonId) {
+  const spinnerTimeout = setTimeout(openLoadingSpinner, 500);
   try {
-    const individualPokemonDialog = document.getElementById(
-      "individualPokemonDialogId" + dialogId,
-    );
-    const specificPokemonDetails = await fetchPokemonDetails(dialogId);
-    individualPokemonDialog.innerHTML = getPokemonDetailsDialogTemplate(specificPokemonDetails);
-    individualPokemonDialog.showModal();
+    return await fetchPokemonDetails(pokemonId);
   } finally {
+    clearTimeout(spinnerTimeout);
     closeLoadingSpinner();
   }
+}
+
+async function showPokemonDetailsDialog(dialogId) {
+  const individualPokemonDialog = document.getElementById(
+    "individualPokemonDialogId" + dialogId,
+  );
+  const specificPokemonDetails =
+    await fetchPokemonDetailsWithDelayedSpinner(dialogId);
+  individualPokemonDialog.innerHTML = getPokemonDetailsDialogTemplate(specificPokemonDetails);
+  individualPokemonDialog.showModal();
 }
 
 async function renderNextPokemonDialog(id, buttonElement) {
   const nextId = id === 1025 ? 1 : id + 1;
   const currentDialog = buttonElement.closest("dialog");
-  openLoadingSpinner();
-  try {
-    const specificPokemonDetails = await fetchPokemonDetails(nextId);
-    currentDialog.className =
-      "pokemon_details_dialog " + specificPokemonDetails.types[0].type.name;
-    currentDialog.innerHTML = getPokemonDetailsDialogTemplate(specificPokemonDetails);
-  } finally {
-    closeLoadingSpinner();
-  }
+  const specificPokemonDetails =
+    await fetchPokemonDetailsWithDelayedSpinner(nextId);
+  currentDialog.className =
+    "pokemon_details_dialog " + specificPokemonDetails.types[0].type.name;
+  currentDialog.setAttribute(
+    "aria-label",
+    `${makeFirstCharUpperCase(specificPokemonDetails.name)} details`,
+  );
+  currentDialog.innerHTML = getPokemonDetailsDialogTemplate(specificPokemonDetails);
 }
 
 async function renderPreviousPokemonDialog(id, buttonElement) {
   const previousId = id === 1 ? 1025 : id - 1;
   const currentDialog = buttonElement.closest("dialog");
-  openLoadingSpinner();
-  try {
-    const specificPokemonDetails = await fetchPokemonDetails(previousId);
-    currentDialog.className =
-      "pokemon_details_dialog " + specificPokemonDetails.types[0].type.name;
-    currentDialog.innerHTML = getPokemonDetailsDialogTemplate(specificPokemonDetails);
-  } finally {
-    closeLoadingSpinner();
-  }
+  const specificPokemonDetails =
+    await fetchPokemonDetailsWithDelayedSpinner(previousId);
+  currentDialog.className =
+    "pokemon_details_dialog " + specificPokemonDetails.types[0].type.name;
+  currentDialog.setAttribute(
+    "aria-label",
+    `${makeFirstCharUpperCase(specificPokemonDetails.name)} details`,
+  );
+  currentDialog.innerHTML = getPokemonDetailsDialogTemplate(specificPokemonDetails);
 }
 
 function isValidInputLength(rawInput) {

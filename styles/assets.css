@@ -160,6 +160,8 @@
   margin: auto;
   animation: spin 1.5s linear infinite;
   outline: none;
+  overflow: hidden;
+  overscroll-behavior: contain;
 }
 
 .loading_screen_dialog::backdrop {
@@ -183,6 +185,8 @@
   width: 100%;
   border-radius: 16px;
   padding: 0 0 0 0;
+  overflow: hidden;
+  overscroll-behavior: contain;
 }
 
 .pokemon_details_dialog[open] {
@@ -193,6 +197,44 @@
 
 .pokemon_details_dialog::backdrop {
   background-color: #00000066;
+}
+
+.close_dialog_button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1;
+}
+
+.close_dialog_button img {
+  width: 100%;
+  height: 100%;
+}
+
+.close_dialog_icon_hover {
+  display: none;
+}
+
+.close_dialog_button:hover .close_dialog_icon_default {
+  display: none;
+}
+
+.close_dialog_button:hover .close_dialog_icon_hover {
+  display: inline;
+}
+
+[data-id="overlay-pokemon-name"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .big_card_image_circle {

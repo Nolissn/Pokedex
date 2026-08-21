@@ -54,7 +54,12 @@
           placeholder="Search"
           class="search_bar"
         />
-        <button onclick="searchPokemons()" class="search_button">
+        <button
+          onclick="searchPokemons()"
+          data-id="search-button"
+          aria-label="Search"
+          class="search_button"
+        >
           <img
             class="search_button_icon"
             src="./assets/SVG/search_icon.svg"
@@ -63,16 +68,18 @@
         </button>
       </div>
     </header>
-    <main id="mainId">
+    <main id="mainId" data-id="content">
       <section id="pokemon_section" class="pokemon_section"></section>
       <button
         id="loadMoreButtonId"
         onclick="loadPokemons(findLastLoadedPokemonId() + 1, 20)"
+        data-id="load-more-button"
+        aria-label="Load more Pokémon"
         class="load_more_button"
       >
         Load more
       </button>
-      <dialog tabindex="-1" id="loadingScreenDialogId" class="loading_screen_dialog"></dialog>
+      <dialog tabindex="-1" id="loadingScreenDialogId" aria-label="Loading" class="loading_screen_dialog"></dialog>
     </main>
     <footer>
       <svg width="0" height="0">
