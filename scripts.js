@@ -107,40 +107,49 @@ async function RenderPreviosPokemonDialog(id, buttonElement) {
 }
 
 function validateUserInput(rawInput) {
-  if (rawInput.length >= 3 && rawInput.length <= 25) {
-    const isNumber = /^\d+$/.test(rawInput);
-    if(isNumber === true){
-      const rawInputNumber = Number(rawInput);
-      if (rawInputNumber > 0 && rawInputNumber < 1026) {
-        return true;
-      }else{
-        alert(`Please enter a number with a total value between 1 and 1025. "${rawInputNumber}" isn't valid`);
-        return false;
-      }
-    }
-    return true;
-  } else {
+  if (rawInput.length < 3 || rawInput.length > 25) {
     alert("Please enter between 3 and 25 characters!");
     return false;
   }
+
+  const isNumber = /^\d+$/.test(rawInput);
+  if (isNumber) {
+    const rawInputNumber = Number(rawInput);
+    if (rawInputNumber < 1 || rawInputNumber > 1025) {
+      alert(`Please enter a number with a total value between 1 and 1025. "${rawInputNumber}" isn't valid`);
+      return false;
+    }
+    return rawInputNumber;
+  }
+
+  const hasSpecialCharFirst = /^[^a-zA-Z0-9]/.test(rawInput);
+  if (hasSpecialCharFirst) {
+    alert("Special characters can not be used like that!");
+    return false;
+  }
+  return rawInput.toLowerCase();
 }
 
 async function searchPokemons() {
   const userInputField = document.getElementById("SearchInputId");
   const userInput = userInputField.value;
   const trimUserInput = userInput.trim();
-  if (validateUserInput(trimUserInput) === true) {
-    openLoadingSpinner();
-    try {
-      let response = await fetch(`${BASE_URL}/${trimUserInput.toLowerCase()}`);
-      if (response.status === 200) {
-        renderSearchResults(response);
-      } else {
-        renderSearchFail(response, userInput);
-      }
-    } finally {
-      closeLoadingSpinner();
+
+  const validatedInput = validateUserInput(trimUserInput);
+  if (validatedInput === false) {
+    return;
+  }
+
+  openLoadingSpinner();
+  try {
+    let response = await fetch(`${BASE_URL}/${validatedInput}`);
+    if (response.status === 200) {
+      renderSearchResults(response);
+    } else {
+      renderSearchFail(response, userInput);
     }
+  } finally {
+    closeLoadingSpinner();
   }
 }
 
