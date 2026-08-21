@@ -4,13 +4,13 @@ function init() {
 
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 
-async function loadPokemons(start, amound) {
+async function loadPokemons(start, amount) {
   openLoadingSpinner();
   try {
-    let response = await fetch(
-      `${BASE_URL}?limit=${amound}&offset=${start - 1}`,
+    const response = await fetch(
+      `${BASE_URL}?limit=${amount}&offset=${start - 1}`,
     );
-    let basicInformation = await response.json();
+    const basicInformation = await response.json();
     await loadIntoPokemonSection(basicInformation);
   } finally {
     closeLoadingSpinner();
@@ -18,11 +18,11 @@ async function loadPokemons(start, amound) {
 }
 
 async function loadIntoPokemonSection(basicInformation) {
-  let section = document.getElementById("pokemon_section");
+  const section = document.getElementById("pokemon_section");
 
   for (let index = 0; index < basicInformation.results.length; index++) {
-    let detailResponse = await fetch(basicInformation.results[index].url);
-    let pokemonDetails = await detailResponse.json();
+    const detailResponse = await fetch(basicInformation.results[index].url);
+    const pokemonDetails = await detailResponse.json();
     section.innerHTML += getPokemonCardInSectionTemplate(pokemonDetails);
   }
 }
@@ -37,33 +37,34 @@ function closeLoadingSpinner() {
   loadingSpinner.close();
 }
 
-function makeFirstCharUpperCase(rawstring) {
-  rawstring = rawstring.charAt(0).toUpperCase() + rawstring.slice(1);
-  return rawstring;
+function makeFirstCharUpperCase(rawString) {
+  rawString = rawString.charAt(0).toUpperCase() + rawString.slice(1);
+  return rawString;
 }
 
 function findLastLoadedPokemonId() {
   const section = document.getElementById("pokemon_section");
   const cardButtons = section.querySelectorAll(".small_pokemon_card");
-  let specificButton = cardButtons[cardButtons.length - 1];
-  let specificID = specificButton.lastElementChild.innerHTML;
-  specificID = specificID.replaceAll("#", "");
-  specificID = parseInt(specificID);
-  return specificID;
+  const specificButton = cardButtons[cardButtons.length - 1];
+  let specificId = specificButton.lastElementChild.innerHTML;
+  specificId = specificId.replaceAll("#", "");
+  specificId = parseInt(specificId);
+  return specificId;
 }
 
-async function showPokemonDetailsDialog(DialogId) {
+async function fetchPokemonDetails(pokemonId) {
+  const response = await fetch(`${BASE_URL}/${pokemonId}`);
+  return await response.json();
+}
+
+async function showPokemonDetailsDialog(dialogId) {
   openLoadingSpinner();
   try {
     const individualPokemonDialog = document.getElementById(
-      "individualPokemonDialogId" + DialogId,
+      "individualPokemonDialogId" + dialogId,
     );
-    let specificPokemonDetailsResponse = await fetch(`${BASE_URL}/${DialogId}`);
-    let specificPokemonDetails = await specificPokemonDetailsResponse.json();
-    individualPokemonDialog.innerHTML = getPokemonDetailsDialogTemplate(
-      specificPokemonDetails,
-      individualPokemonDialog,
-    );
+    const specificPokemonDetails = await fetchPokemonDetails(dialogId);
+    individualPokemonDialog.innerHTML = getPokemonDetailsDialogTemplate(specificPokemonDetails);
     individualPokemonDialog.showModal();
   } finally {
     closeLoadingSpinner();
@@ -75,55 +76,54 @@ async function renderNextPokemonDialog(id, buttonElement) {
   const currentDialog = buttonElement.closest("dialog");
   openLoadingSpinner();
   try {
-    let specificPokemonDetailsResponse = await fetch(`${BASE_URL}/${nextId}`);
-    let specificPokemonDetails = await specificPokemonDetailsResponse.json();
+    const specificPokemonDetails = await fetchPokemonDetails(nextId);
     currentDialog.className =
       "pokemon_details_dialog " + specificPokemonDetails.types[0].type.name;
-    currentDialog.innerHTML = getPokemonDetailsDialogTemplate(
-      specificPokemonDetails,
-    );
+    currentDialog.innerHTML = getPokemonDetailsDialogTemplate(specificPokemonDetails);
   } finally {
     closeLoadingSpinner();
   }
 }
 
-async function RenderPreviosPokemonDialog(id, buttonElement) {
+async function renderPreviousPokemonDialog(id, buttonElement) {
   const previousId = id === 1 ? 1025 : id - 1;
   const currentDialog = buttonElement.closest("dialog");
   openLoadingSpinner();
   try {
-    let specificPokemonDetailsResponse = await fetch(
-      `${BASE_URL}/${previousId}`,
-    );
-    let specificPokemonDetails = await specificPokemonDetailsResponse.json();
+    const specificPokemonDetails = await fetchPokemonDetails(previousId);
     currentDialog.className =
       "pokemon_details_dialog " + specificPokemonDetails.types[0].type.name;
-    currentDialog.innerHTML = getPokemonDetailsDialogTemplate(
-      specificPokemonDetails,
-    );
+    currentDialog.innerHTML = getPokemonDetailsDialogTemplate(specificPokemonDetails);
   } finally {
     closeLoadingSpinner();
   }
 }
 
-function validateUserInput(rawInput) {
-  if (rawInput.length < 3 || rawInput.length > 25) {
-    alert("Please enter between 3 and 25 characters!");
-    return false;
+function isValidInputLength(rawInput) {
+  if (rawInput.length >= 3 && rawInput.length <= 25) {
+    return true;
   }
+  alert("Please enter between 3 and 25 characters!");
+  return false;
+}
 
-  const isNumber = /^\d+$/.test(rawInput);
-  if (isNumber) {
-    const rawInputNumber = Number(rawInput);
-    if (rawInputNumber < 1 || rawInputNumber > 1025) {
-      alert(`Please enter a number with a total value between 1 and 1025. "${rawInputNumber}" isn't valid`);
-      return false;
-    }
+function parseValidPokemonNumber(rawInput) {
+  const rawInputNumber = Number(rawInput);
+  if (rawInputNumber >= 1 && rawInputNumber <= 1025) {
     return rawInputNumber;
   }
+  alert(`Please enter a number with a total value between 1 and 1025. "${rawInputNumber}" isn't valid`);
+  return false;
+}
 
-  const hasSpecialCharFirst = /^[^a-zA-Z0-9]/.test(rawInput);
-  if (hasSpecialCharFirst) {
+function validateUserInput(rawInput) {
+  if (!isValidInputLength(rawInput)) {
+    return false;
+  }
+  if (/^\d+$/.test(rawInput)) {
+    return parseValidPokemonNumber(rawInput);
+  }
+  if (/^[^a-zA-Z0-9]/.test(rawInput)) {
     alert("Special characters can not be used like that!");
     return false;
   }
@@ -133,16 +133,18 @@ function validateUserInput(rawInput) {
 async function searchPokemons() {
   const userInputField = document.getElementById("SearchInputId");
   const userInput = userInputField.value;
-  const trimUserInput = userInput.trim();
-
-  const validatedInput = validateUserInput(trimUserInput);
+  const trimmedUserInput = userInput.trim();
+  const validatedInput = validateUserInput(trimmedUserInput);
   if (validatedInput === false) {
     return;
   }
+  await fetchAndRenderSearchResult(validatedInput, userInput);
+}
 
+async function fetchAndRenderSearchResult(validatedInput, userInput) {
   openLoadingSpinner();
   try {
-    let response = await fetch(`${BASE_URL}/${validatedInput}`);
+    const response = await fetch(`${BASE_URL}/${validatedInput}`);
     if (response.status === 200) {
       renderSearchResults(response);
     } else {
@@ -155,10 +157,10 @@ async function searchPokemons() {
 
 async function renderSearchResults(response) {
   const specificPokemonDetails = await response.json();
-  let pokemonSection = document.getElementById("pokemon_section");
+  const pokemonSection = document.getElementById("pokemon_section");
   pokemonSection.innerHTML = "";
   pokemonSection.className = "pokemon_section_search_success";
-  let loadMoreButton =
+  const loadMoreButton =
     document.getElementById("loadMoreButtonId") ||
     document.getElementById("RefreshButtonId");
   loadMoreButton.outerHTML = getRefreshPageButtonTemplate();
@@ -167,10 +169,10 @@ async function renderSearchResults(response) {
 }
 
 function renderSearchFail(response, userInput) {
-  let statusCode = response.status;
-  let pokemonSection = document.getElementById("pokemon_section");
+  const statusCode = response.status;
+  const pokemonSection = document.getElementById("pokemon_section");
   pokemonSection.innerHTML = "";
-  let loadMoreButton =
+  const loadMoreButton =
     document.getElementById("loadMoreButtonId") ||
     document.getElementById("RefreshButtonId");
   loadMoreButton.outerHTML = getRefreshPageButtonTemplate();

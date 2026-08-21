@@ -1,5 +1,5 @@
 function getPokemonCardInSectionTemplate(pokemonDetails) {
-  return /* HTML */ `<button
+  return `<button
       onclick="showPokemonDetailsDialog(${pokemonDetails.id})"
       id="pokemonCardId${pokemonDetails.id}"
       class="small_pokemon_card ${pokemonDetails.types[0].type.name}"
@@ -20,9 +20,11 @@ function getPokemonCardInSectionTemplate(pokemonDetails) {
         >
           ${makeFirstCharUpperCase(pokemonDetails.types[0].type.name)}
         </div>
-        ${pokemonDetails.types.length === 2
-          ? `<div class="pokemon_card_type_general ${pokemonDetails.types[1].type.name}">${makeFirstCharUpperCase(pokemonDetails.types[1].type.name)}</div>`
-          : ""}
+        ${
+          pokemonDetails.types.length === 2
+            ? `<div class="pokemon_card_type_general ${pokemonDetails.types[1].type.name}">${makeFirstCharUpperCase(pokemonDetails.types[1].type.name)}</div>`
+            : ""
+        }
       </section>
       <span class="pokemon_card_id">#${pokemonDetails.id}</span>
     </button>
@@ -33,35 +35,32 @@ function getPokemonCardInSectionTemplate(pokemonDetails) {
     ></dialog>`;
 }
 
-function getPokemonDetailsDialogTemplate(
-  specificPokemonDetails,
-  individualPokemonDialog,
-) {
-  return /* HTML */ `
-    <div class="big_pokemon_card_image_circle">
+function getPokemonDetailsDialogTemplate(specificPokemonDetails) {
+  return `
+    <div class="big_card_image_circle">
       <img
-        class="big_pokemon_card_image"
+        class="big_card_image"
         src="${specificPokemonDetails.sprites.other["official-artwork"].front_default}"
         alt="Pokémon Image"
       ></img>
     </div>
-    <span class="big_pokemon_card_name"
+    <span class="big_card_name"
       >${makeFirstCharUpperCase(specificPokemonDetails.name)}</span
     >
-    <hr class="big_pokemon_card_deviding_line_name" />
+    <hr class="big_card_dividing_line_name" />
     <section class="big_pokemon_type_section">
       <div
-        class="big_pokemon_card_type_general ${specificPokemonDetails.types[0].type.name}"
+        class="big_card_type_general ${specificPokemonDetails.types[0].type.name}"
       >
         ${makeFirstCharUpperCase(specificPokemonDetails.types[0].type.name)}
       </div>
       ${
         specificPokemonDetails.types.length === 2
-          ? `<div class="big_pokemon_card_type_general ${specificPokemonDetails.types[1].type.name}">${makeFirstCharUpperCase(specificPokemonDetails.types[1].type.name)}</div>`
+          ? `<div class="big_card_type_general ${specificPokemonDetails.types[1].type.name}">${makeFirstCharUpperCase(specificPokemonDetails.types[1].type.name)}</div>`
           : ""
       }
     </section>
-    <section class="big_pokemon_card_stats_section">
+    <section class="big_card_stats_section">
       <div class="big_card_content_positioning_div">
         <div class="big_card_image_and_stat_label_positioning_div">
           <img
@@ -151,30 +150,38 @@ function getPokemonDetailsDialogTemplate(
         <span class="big_card_stats_text">${specificPokemonDetails.weight / 10} kg</span>
       </div>
     </section>
-    <footer class="big_pokemon_card_footer">
-    <nav class="big_card_navbar">
-    <button onclick="RenderPreviosPokemonDialog(${specificPokemonDetails.id}, this)" class="big_card_nav_bar_button ${specificPokemonDetails.types[0].type.name}">
-    <img
+    <footer class="big_card_footer">
+      <nav class="big_card_nav_bar">
+        <button
+          onclick="renderPreviousPokemonDialog(${specificPokemonDetails.id}, this)"
+          class="big_card_nav_bar_button ${specificPokemonDetails.types[0].type.name}"
+        >
+          <img
             class="big_card_nav_image"
             src="./assets/SVG/arrow-left.svg"
             alt="Weight Icon"
           />
-    </button>
-    <p class="big_card_nav_id_text">${specificPokemonDetails.id.toString()}/1025</p>
-    <button onclick="renderNextPokemonDialog(${specificPokemonDetails.id}, this)" class="big_card_nav_bar_button ${specificPokemonDetails.types[0].type.name}">
-    <img
+        </button>
+        <p class="big_card_nav_id_text">
+          ${specificPokemonDetails.id.toString()}/1025
+        </p>
+        <button
+          onclick="renderNextPokemonDialog(${specificPokemonDetails.id}, this)"
+          class="big_card_nav_bar_button ${specificPokemonDetails.types[0].type.name}"
+        >
+          <img
             class="big_card_nav_image"
             src="./assets/SVG/arrow-right.svg"
             alt="Weight Icon"
           />
-    </button>
-    </nav>
+        </button>
+      </nav>
     </footer>
   `;
 }
 
 function getSearchFailResultTemplate(statusCode, userInput) {
-  return /* HTML */ `
+  return `
     <div class="search_fail_content_positioning_div">
       <img
         class="search_fail_image"
@@ -182,23 +189,31 @@ function getSearchFailResultTemplate(statusCode, userInput) {
         alt="Search Fail Image"
       />
       <div class="search_fail_text_positioning_div">
-        <span class="search_fail_status_code">Statuscode "<span class="search_fail_highlight">${statusCode}</span>"</span>
-        <p class="search_fail_message">The Pokémon "<span class="search_fail_highlight">${userInput}</span>" was not found. Enter something else and try again!</p>
+        <span class="search_fail_status_code"
+          >Statuscode "<span class="search_fail_highlight">${statusCode}</span
+          >"</span
+        >
+        <p class="search_fail_message">
+          The Pokémon "<span class="search_fail_highlight">${userInput}</span>"
+          was not found. Enter something else and try again!
+        </p>
       </div>
     </div>
   `;
 }
 
 function getSuccessSearchResultTemplate() {
-  return /* HTML */ `<span class="search_success_text">Success! here is your Pokémon:</span>`;
+  return `<span class="search_success_text"
+    >Success! here is your Pokémon:</span
+  >`;
 }
 
 function getRefreshPageButtonTemplate() {
-  return /* HTML */ `<button
-        id="RefreshButtonId"
-        onclick="location.reload()"
-        class="load_more_button"
-      >
-        Refresh Page
-      </button>`
+  return `<button
+    id="RefreshButtonId"
+    onclick="location.reload()"
+    class="load_more_button"
+  >
+    Refresh Page
+  </button>`;
 }

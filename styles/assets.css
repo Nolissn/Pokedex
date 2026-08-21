@@ -145,7 +145,7 @@
   cursor: default;
 }
 
-.loadingScreenDialog {
+.loading_screen_dialog {
   background-image: url(../assets/SVG/simple_pokeball_icon.svg);
   background-repeat: no-repeat;
   background-position: center;
@@ -162,7 +162,7 @@
   outline: none;
 }
 
-.loadingScreenDialog::backdrop {
+.loading_screen_dialog::backdrop {
   background-color: #00000066;
 }
 
@@ -195,7 +195,7 @@
   background-color: #00000066;
 }
 
-.big_pokemon_card_image_circle {
+.big_card_image_circle {
   width: 400px;
   height: 400px;
   background-color: white;
@@ -206,12 +206,12 @@
   align-items: center;
 }
 
-.big_pokemon_card_image {
+.big_card_image {
   width: 300px;
   height: 300px;
 }
 
-.big_pokemon_card_name {
+.big_card_name {
   font-family: "Poppins";
   font-size: 40px;
   font-weight: 400;
@@ -225,7 +225,7 @@
   justify-content: space-evenly;
 }
 
-.big_pokemon_card_type_general {
+.big_card_type_general {
   font-family: "Poppins";
   font-size: 20px;
   width: 130px;
@@ -236,7 +236,7 @@
   align-items: center;
 }
 
-.big_pokemon_card_deviding_line_name {
+.big_card_dividing_line_name {
   max-width: 800px;
   width: 100%;
   height: 4px;
@@ -246,7 +246,7 @@
   margin-bottom: 16px;
 }
 
-.big_pokemon_card_stats_section {
+.big_card_stats_section {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -255,19 +255,7 @@
   overflow-y: auto;
 }
 
-.big_pokemon_stat_item {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 16px;
-}
-
-.big_pokemon_stat_value {
-  font-family: "Poppins";
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.big_pokemon_card_footer {
+.big_card_footer {
   width: 100%;
   margin-top: auto;
 }
@@ -304,7 +292,7 @@
   font-weight: 400;
 }
 
-.big_card_navbar {
+.big_card_nav_bar {
   max-width: 400px;
   width: 100%;
   height: 64px;
