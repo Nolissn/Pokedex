@@ -106,10 +106,10 @@ async function renderPreviousPokemonDialog(id, buttonElement) {
 }
 
 function isValidInputLength(rawInput) {
-  if (rawInput.length >= 3 && rawInput.length <= 25) {
+  if (rawInput.length >= 3 && rawInput.length <= 27) {
     return true;
   }
-  alert("Please enter between 3 and 25 characters!");
+  alert("Please enter between 3 and 27 characters!");
   return false;
 }
 
@@ -170,7 +170,9 @@ async function renderSearchResults(response) {
     document.getElementById("loadMoreButtonId") ||
     document.getElementById("RefreshButtonId");
   loadMoreButton.outerHTML = getRefreshPageButtonTemplate();
-  await loadPokemons(specificPokemonDetails.id, 1);
+  pokemonSection.innerHTML += getPokemonCardInSectionTemplate(specificPokemonDetails);
+  const smallPokemonCard = document.getElementById("pokemonCardId" + specificPokemonDetails.id);
+  smallPokemonCard.classList.add("small_pokemon_card_search_success");
   pokemonSection.innerHTML += getSuccessSearchResultTemplate();
 }
 

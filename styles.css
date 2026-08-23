@@ -16,7 +16,7 @@ body:has(.pokemon_details_dialog[open]), body:has(.loading_screen_dialog[open]) 
 }
 
 header {
-  height: 112px;
+  height: clamp(74px, calc(2.9688vw + 64.5px), 112px);
   background-color: var(--secondary_color);
   display: flex;
   align-items: center;
@@ -29,19 +29,22 @@ header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  margin-left: clamp(0px, calc(28.571vw - 428.57px), 120px);
+  margin-right: clamp(0px, calc(28.571vw - 428.57px), 120px);
+
 }
 
 main {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 120px;
+  margin-top: clamp(28px, calc(7.1875vw + 5px), 120px);
   flex: 1 0 auto;
 }
 
 footer {
   width: 100%;
-  height: 128px;
+  height: clamp(80px, calc(3.75vw + 68px), 128px);
   background-color: var(--secondary_color);
   clip-path: url(#footer_clip);
   display: flex;
@@ -52,7 +55,8 @@ footer {
 }
 
 footer img {
-  width: 133.28px;
+  width: clamp(100px, calc(2.6vw + 91.68px), 133.28px);
+  aspect-ratio: 133.28/32;
   height: 32px;
 }
 
@@ -60,5 +64,5 @@ footer img {
   font-family: "Poppins";
   font-weight: bold;
   color: #fd5b4f;
-  font-size: 16px;
+  font-size: clamp(10px, calc(0.46875vw + 8.5px), 16px);
 }

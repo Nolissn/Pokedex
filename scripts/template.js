@@ -59,7 +59,7 @@ function getPokemonDetailsDialogTemplate(specificPokemonDetails) {
         alt="Close"
       />
     </button>
-    <div data-id="overlay-pokemon-name">
+    <div data-id="overlay-pokemon-name" class="overlay_pokemon_name">
     <div class="big_card_image_circle">
       <img
         class="big_card_image"
