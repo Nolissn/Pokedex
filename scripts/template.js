@@ -12,9 +12,7 @@ function getPokemonCardInSectionTemplate(pokemonDetails) {
         src="${pokemonDetails.sprites.other["official-artwork"].front_default}"
         alt="${makeFirstCharUpperCase(pokemonDetails.name)} artwork"
       />
-      <span
-        class="pokemon_card_name"
-        style="--name_length: ${pokemonDetails.name.length}"
+      <span class="pokemon_card_name"
         >${makeFirstCharUpperCase(pokemonDetails.name)}</span
       >
       <section class="pokemon_type_section">
@@ -239,7 +237,7 @@ function getSuccessSearchResultTemplate() {
 
 function getRefreshPageButtonTemplate() {
   return `<button
-    id="RefreshButtonId"
+    id="refreshButtonId"
     onclick="location.reload()"
     aria-label="Refresh page"
     class="load_more_button"

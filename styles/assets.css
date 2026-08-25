@@ -81,8 +81,7 @@
 }
 
 .small_pokemon_card_search_success {
-  width: 200px;
-  height: 284px;
+  width: clamp(100px, calc(8.4746vw + 72.881px), 200px);
 }
 
 .small_card_image {
@@ -101,9 +100,7 @@
   max-width: 175px;
   width: 100%;
   height: 35px;
-  display: block;
   overflow: hidden;
-  text-overflow: ellipsis;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -161,11 +158,6 @@
   background-color: var(--action_color);
 }
 
-.load_more_button:disabled {
-  background-color: var(--light_grey_color);
-  cursor: default;
-}
-
 .loading_screen_dialog {
   background-image: url(../assets/SVG/simple_pokeball_icon.svg);
   background-repeat: no-repeat;
@@ -201,7 +193,7 @@
 .pokemon_details_dialog {
   border: none;
   margin: auto;
-  height: 80vh;
+  aspect-ratio: 1/1;
   max-width: clamp(290px, calc(100vw - 30px), 1000px);
   width: 100%;
   border-radius: 16px;
@@ -225,7 +217,6 @@
   top: 16px;
   right: 16px;
   width: 32px;
-  height: 32px;
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -260,7 +251,7 @@
 
 .big_card_image_circle {
   width: 400px;
-  height: 400px;
+  aspect-ratio: 1/1;
   background-color: white;
   border-radius: 50%;
   margin-top: 16px;
@@ -271,7 +262,7 @@
 
 .big_card_image {
   width: 300px;
-  height: 300px;
+  aspect-ratio: 1/1;
 }
 
 .big_card_name {
@@ -397,17 +388,12 @@
   flex-direction: column-reverse;
   align-items: center;
   justify-content: center;
-  max-width: clamp(300px, calc(81.966vw + 37.708px), 1267.2px);
+  max-width: clamp(268px, calc(78.063vw + 18.2px), 1267.2px);
   width: 100%;
   height: clamp(370px, calc(18.644vw + 310.34px), 590px);
   background-color: var(--secondary_color);
   border-radius: 16px;
-  padding: 64px;
-}
-
-.pokemon_section_search_success button{
-  width: clamp(100px, calc(8.4746vw + 72.881px), 200px);
-  height: clamp(150px, calc(11.356vw + 113.66px), 284px);
+  padding: clamp(32px, calc(2.5vw + 24px), 64px);
 }
 
 .search_success_text {
@@ -478,6 +464,87 @@
     margin-right: clamp(0px, calc(-23.529vw + 364.71px), 8px);
   }
 }
+
+@media (max-width: 1200px) {
+  .close_dialog_button {
+    width: clamp(16px, calc(1.8182vw + 10.182px), 32px);
+    top: clamp(8px, calc(0.90909vw + 5.0909px), 16px);
+    right: clamp(8px, calc(0.90909vw + 5.0909px), 16px);
+  }
+
+  .big_card_image_circle {
+    width: clamp(80px, calc(36.364vw - 36.364px), 400px);
+    margin-top: clamp(8px, calc(0.90909vw + 5.0909px), 16px);
+  }
+
+  .big_card_image {
+    width: clamp(60px, calc(27.273vw - 27.273px), 300px);
+  }
+
+  .big_card_name {
+    font-size: clamp(20px, calc(2.2727vw + 12.727px), 40px);
+  }
+
+  .big_card_type_general {
+    font-size: clamp(10px, calc(1.1364vw + 6.3636px), 20px);
+    width: clamp(65px, calc(7.3864vw + 41.364px), 130px);
+  }
+
+  .big_card_dividing_line_name {
+    height: clamp(2px, calc(0.22727vw + 1.2727px), 4px);
+    margin-bottom: clamp(8px, calc(0.90909vw + 5.0909px), 16px);
+  }
+
+  .big_card_stats_section {
+    gap: clamp(4px, calc(0.45455vw + 2.5455px), 8px);
+    margin-top: clamp(8px, calc(0.90909vw + 5.0909px), 16px);
+  }
+
+  .big_card_stat_image {
+    width: clamp(16px, calc(1.8182vw + 10.182px), 32px);
+    height: clamp(16px, calc(1.8182vw + 10.182px), 32px);
+    margin-right: clamp(8px, calc(0.90909vw + 5.0909px), 16px);
+  }
+
+  .big_card_content_positioning_div {
+    margin: 0px clamp(8px, calc(0.90909vw + 5.0909px), 16px);
+  }
+
+  .big_card_stats_label_text {
+    font-size: clamp(10px, calc(0.68182vw + 7.8182px), 16px);
+  }
+
+  .big_card_stats_text {
+    font-size: clamp(10px, calc(0.68182vw + 7.8182px), 16px);
+  }
+
+  .big_card_nav_bar {
+    max-width: clamp(200px, calc(22.727vw + 127.27px), 400px);
+    height: clamp(32px, calc(3.6364vw + 20.364px), 64px);
+    border-radius: clamp(16px, calc(1.8182vw + 10.182px), 32px);
+  }
+
+  .big_card_nav_bar_button {
+    width: clamp(32px, calc(3.6364vw + 20.364px), 64px);
+    height: clamp(32px, calc(3.6364vw + 20.364px), 64px);
+  }
+
+  .big_card_nav_image {
+    width: clamp(16px, calc(1.8182vw + 10.182px), 32px);
+    height: clamp(16px, calc(1.8182vw + 10.182px), 32px);
+  }
+
+  .big_card_nav_id_text {
+    font-size: clamp(10px, calc(0.68182vw + 7.8182px), 16px);
+  }
+}
+
+@media (max-width: 1079.33px) {
+  .pokemon_details_dialog {
+    max-width: clamp(273px, calc(95.742vw - 33.375px), 1000px);
+  }
+}
+
 @media (max-width: 650px) {
   .pokemon_section {
     grid-template-columns: repeat(3, minmax(84.89px, 200px));

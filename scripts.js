@@ -137,7 +137,7 @@ function validateUserInput(rawInput) {
 }
 
 async function searchPokemons() {
-  const userInputField = document.getElementById("SearchInputId");
+  const userInputField = document.getElementById("searchInputId");
   const userInput = userInputField.value;
   const trimmedUserInput = userInput.trim();
   const validatedInput = validateUserInput(trimmedUserInput);
@@ -168,7 +168,7 @@ async function renderSearchResults(response) {
   pokemonSection.className = "pokemon_section_search_success";
   const loadMoreButton =
     document.getElementById("loadMoreButtonId") ||
-    document.getElementById("RefreshButtonId");
+    document.getElementById("refreshButtonId");
   loadMoreButton.outerHTML = getRefreshPageButtonTemplate();
   pokemonSection.innerHTML += getPokemonCardInSectionTemplate(specificPokemonDetails);
   const smallPokemonCard = document.getElementById("pokemonCardId" + specificPokemonDetails.id);
@@ -182,7 +182,7 @@ function renderSearchFail(response, userInput) {
   pokemonSection.innerHTML = "";
   const loadMoreButton =
     document.getElementById("loadMoreButtonId") ||
-    document.getElementById("RefreshButtonId");
+    document.getElementById("refreshButtonId");
   loadMoreButton.outerHTML = getRefreshPageButtonTemplate();
   pokemonSection.className = "pokemon_section_search_fail";
   pokemonSection.innerHTML += getSearchFailResultTemplate(
