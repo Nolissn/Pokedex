@@ -193,7 +193,7 @@
 .pokemon_details_dialog {
   border: none;
   margin: auto;
-  aspect-ratio: 1/1;
+  height: fit-content;
   max-width: clamp(290px, calc(100vw - 30px), 1000px);
   width: 100%;
   border-radius: 16px;
