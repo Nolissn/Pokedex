@@ -48,7 +48,7 @@
   padding-left: clamp(6px, calc(2.03125vw - 0.5px), 32px);
   height: fit-content;
   display: grid;
-  grid-template-columns: repeat(5, minmax(48px, 200px));
+  grid-template-columns: repeat(5, minmax(150px, 200px));
   grid-auto-rows: auto;
   justify-items: center;
   justify-content: center;
@@ -81,7 +81,7 @@
 }
 
 .small_pokemon_card_search_success {
-  width: clamp(100px, calc(8.4746vw + 72.881px), 200px);
+  width: clamp(160px, calc(8.4746vw + 72.881px), 200px);
 }
 
 .small_card_image {
@@ -94,7 +94,7 @@
 
 .pokemon_card_name {
   font-family: "Poppins";
-  font-size: clamp(10px, calc(1.3684vw + 1.1053px), 23px);
+  font-size: clamp(16px, calc(1.3684vw + 1.1053px), 23px);
   font-weight: 400;
   white-space: nowrap;
   max-width: 175px;
@@ -108,7 +108,7 @@
 
 .pokemon_card_id {
   font-family: "Poppins";
-  font-size: clamp(7px, calc(0.52632vw + 3.5789px), 12px);
+  font-size: 16px;
   font-weight: 500;
   margin-left: auto;
   margin-right: 6px;
@@ -119,7 +119,7 @@
 
 .pokemon_type_section {
   width: 100%;
-  height: 20px;
+  height: 24px;
   display: flex;
   padding-left: clamp(2.5px, calc(1.4211vw - 6.7368px), 16px);
   padding-right: clamp(2.5px, calc(1.4211vw - 6.7368px), 16px);
@@ -129,10 +129,10 @@
 
 .pokemon_card_type_general {
   font-family: "Poppins";
-  font-size: clamp(7px, calc(0.52632vw + 3.5789px), 12px);
+  font-size: 16px;
   font-weight: 400;
-  height: clamp(10.6875px, calc(0.76974vw + 5.6842px), 18px);
-  width: clamp(42.75px, calc(3.0789vw + 22.737px), 72px);
+  height: 22px;
+  width: clamp(72px, calc(3.0789vw + 22.737px), 90px);
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -146,7 +146,7 @@
   font-family: "Poppins";
   font-weight: 400;
   color: var(--secondary_color);
-  font-size: clamp(14px, calc(0.15625vw + 13.5px), 16px);
+  font-size: 16px;
   border: none;
   margin-top: 32px;
   border-radius: 16px;
@@ -398,7 +398,7 @@
 
 .search_success_text {
   font-family: "Poppins";
-  font-size: clamp(15px, calc(1.2712vw + 10.932px), 30px);
+  font-size: clamp(16px, calc(1.2712vw + 10.932px), 30px);
   font-weight: 500;
   color: var(--action_color);
   margin-bottom: 32px;
@@ -468,14 +468,14 @@
 
 .search_fail_status_code {
   font-family: "Poppins";
-  font-size: clamp(12px, calc(0.67797vw + 9.8305px), 20px);
+  font-size: clamp(16px, calc(0.67797vw + 9.8305px), 20px);
   font-weight: 500;
   color: var(--secondary_color);
 }
 
 .search_fail_message {
   font-family: "Poppins";
-  font-size: clamp(8px, calc(0.67797vw + 5.8305px), 16px);
+  font-size: 16px;
   font-weight: 400;
   max-width: 400px;
   color: var(--secondary_color);
@@ -512,7 +512,7 @@
   }
 
   .big_card_type_general {
-    font-size: clamp(10px, calc(1.1364vw + 6.3636px), 20px);
+    font-size: clamp(16px, calc(1.1364vw + 6.3636px), 20px);
     width: clamp(65px, calc(7.3864vw + 41.364px), 130px);
   }
 
@@ -537,11 +537,11 @@
   }
 
   .big_card_stats_label_text {
-    font-size: clamp(10px, calc(0.68182vw + 7.8182px), 16px);
+    font-size: 16px;
   }
 
   .big_card_stats_text {
-    font-size: clamp(10px, calc(0.68182vw + 7.8182px), 16px);
+    font-size: 16px;
   }
 
   .big_card_nav_bar {
@@ -561,7 +561,7 @@
   }
 
   .big_card_nav_id_text {
-    font-size: clamp(10px, calc(0.68182vw + 7.8182px), 16px);
+    font-size: 16px;
   }
 }
 
@@ -571,26 +571,38 @@
   }
 }
 
+@media (max-width: 1100px) {
+  .pokemon_section {
+    grid-template-columns: repeat(4, minmax(150px, 200px));
+  }
+}
+
+@media (max-width: 850px) {
+  .pokemon_section {
+    grid-template-columns: repeat(3, minmax(150px, 200px));
+  }
+}
+
 @media (max-width: 650px) {
   .pokemon_section {
-    grid-template-columns: repeat(3, minmax(84.89px, 200px));
+    grid-template-columns: repeat(2, minmax(150px, 200px));
   }
 
   .pokemon_card_name {
-    font-size: clamp(10px, calc(3.0303vw + 0.30303px), 20px);
+    font-size: clamp(16px, calc(3.0303vw + 0.30303px), 20px);
   }
 
   .pokemon_type_section {
     justify-content: space-around;
   }
 
-  .pokemon_card_type_general {
-    font-size: clamp(7px, calc(1.2121vw + 3.1212px), 11px);
-    height: clamp(10.6875px, calc(1.0038vw + 7.4754px), 14px);
-    width: clamp(30px, calc(7.5758vw + 5.7576px), 55px);
-  }
-
   .pokemon_card_id {
-    font-size: clamp(7px, calc(0.90909vw + 4.0909px), 10px);
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .pokemon_section {
+    grid-template-columns: repeat(1, minmax(150px, 200px));
   }
 }
