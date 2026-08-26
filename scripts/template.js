@@ -235,6 +235,12 @@ function getSuccessSearchResultTemplate() {
   >`;
 }
 
+function getPartialMatchResultTemplate() {
+  return `<span class="search_success_text"
+    >No exact match, but these Pokémon fit:</span
+  >`;
+}
+
 function getRefreshPageButtonTemplate() {
   return `<button
     id="refreshButtonId"

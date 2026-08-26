@@ -3,6 +3,7 @@ function init() {
 }
 
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
+let loadedPokemonNames = [];
 
 async function loadPokemons(start, amount) {
   openLoadingSpinner();
@@ -23,6 +24,7 @@ async function loadIntoPokemonSection(basicInformation) {
   for (let index = 0; index < basicInformation.results.length; index++) {
     const detailResponse = await fetch(basicInformation.results[index].url);
     const pokemonDetails = await detailResponse.json();
+    loadedPokemonNames.push(pokemonDetails.name);
     section.innerHTML += getPokemonCardInSectionTemplate(pokemonDetails);
   }
 }
@@ -73,7 +75,9 @@ async function showPokemonDetailsDialog(dialogId) {
   );
   const specificPokemonDetails =
     await fetchPokemonDetailsWithDelayedSpinner(dialogId);
-  individualPokemonDialog.innerHTML = getPokemonDetailsDialogTemplate(specificPokemonDetails);
+  individualPokemonDialog.innerHTML = getPokemonDetailsDialogTemplate(
+    specificPokemonDetails,
+  );
   individualPokemonDialog.showModal();
 }
 
@@ -88,7 +92,9 @@ async function renderNextPokemonDialog(id, buttonElement) {
     "aria-label",
     `${makeFirstCharUpperCase(specificPokemonDetails.name)} details`,
   );
-  currentDialog.innerHTML = getPokemonDetailsDialogTemplate(specificPokemonDetails);
+  currentDialog.innerHTML = getPokemonDetailsDialogTemplate(
+    specificPokemonDetails,
+  );
 }
 
 async function renderPreviousPokemonDialog(id, buttonElement) {
@@ -102,7 +108,9 @@ async function renderPreviousPokemonDialog(id, buttonElement) {
     "aria-label",
     `${makeFirstCharUpperCase(specificPokemonDetails.name)} details`,
   );
-  currentDialog.innerHTML = getPokemonDetailsDialogTemplate(specificPokemonDetails);
+  currentDialog.innerHTML = getPokemonDetailsDialogTemplate(
+    specificPokemonDetails,
+  );
 }
 
 function isValidInputLength(rawInput) {
@@ -118,7 +126,9 @@ function parseValidPokemonNumber(rawInput) {
   if (rawInputNumber >= 1 && rawInputNumber <= 1025) {
     return rawInputNumber;
   }
-  alert(`Please enter a number with a total value between 1 and 1025. "${rawInputNumber}" isn't valid`);
+  alert(
+    `Please enter a number with a total value between 1 and 1025. "${rawInputNumber}" isn't valid`,
+  );
   return false;
 }
 
@@ -151,8 +161,10 @@ async function fetchAndRenderSearchResult(validatedInput, userInput) {
   openLoadingSpinner();
   try {
     const response = await fetch(`${BASE_URL}/${validatedInput}`);
-    if (response.status === 200) {
-      renderSearchResults(response);
+    const partialMatches = findPartialMatches(validatedInput);
+    if (response.status === 200 || partialMatches.length > 0) {
+      await renderSearchResults(response, partialMatches);
+      await renderPartialMatchesResult(partialMatches);
     } else {
       renderSearchFail(response, userInput);
     }
@@ -161,8 +173,65 @@ async function fetchAndRenderSearchResult(validatedInput, userInput) {
   }
 }
 
-async function renderSearchResults(response) {
+function findPartialMatches(validatedInput) {
+  const searchTerm = String(validatedInput).toLowerCase();
+  const matches = loadedPokemonNames.filter(
+    (pokemonName) =>
+      pokemonName.includes(searchTerm) && pokemonName !== searchTerm,
+  );
+  return matches;
+}
+
+function addSearchResultCard(pokemonDetails, isExactMatch) {
+  const pokemonSection = document.getElementById("pokemon_section");
+  pokemonSection.innerHTML += getPokemonCardInSectionTemplate(pokemonDetails);
+  const smallPokemonCard = document.getElementById(
+    "pokemonCardId" + pokemonDetails.id,
+  );
+  smallPokemonCard.classList.add("small_pokemon_card_search_success");
+  if (isExactMatch) {
+    smallPokemonCard.classList.add("small_pokemon_card_exact_match");
+  }
+}
+
+async function renderPartialMatchesResult(partialMatches) {
+  if (partialMatches.length === 0) {
+    return;
+  }
+  for (let index = 0; index < partialMatches.length; index++) {
+    const pokemonDetails = await fetchPokemonDetails(partialMatches[index]);
+    addSearchResultCard(pokemonDetails);
+  }
+}
+
+async function renderSearchResults(response, partialMatches) {
+  if (response.status !== 200) {
+    changeToPartialMatchesHTML(false);
+    return;
+  }
   const specificPokemonDetails = await response.json();
+  if (partialMatches.length === 0) {
+    changeToSuccessHTML(specificPokemonDetails);
+    return;
+  }
+  changeToPartialMatchesHTML(true);
+  addSearchResultCard(specificPokemonDetails, true);
+}
+
+function changeToPartialMatchesHTML(hasExactMatch) {
+  const pokemonSection = document.getElementById("pokemon_section");
+  pokemonSection.innerHTML = "";
+  pokemonSection.className = "pokemon_section_partial_match";
+  const loadMoreButton =
+    document.getElementById("loadMoreButtonId") ||
+    document.getElementById("refreshButtonId");
+  loadMoreButton.outerHTML = getRefreshPageButtonTemplate();
+  pokemonSection.innerHTML += hasExactMatch
+    ? getSuccessSearchResultTemplate()
+    : getPartialMatchResultTemplate();
+}
+
+function changeToSuccessHTML(specificPokemonDetails) {
   const pokemonSection = document.getElementById("pokemon_section");
   pokemonSection.innerHTML = "";
   pokemonSection.className = "pokemon_section_search_success";
@@ -170,9 +239,7 @@ async function renderSearchResults(response) {
     document.getElementById("loadMoreButtonId") ||
     document.getElementById("refreshButtonId");
   loadMoreButton.outerHTML = getRefreshPageButtonTemplate();
-  pokemonSection.innerHTML += getPokemonCardInSectionTemplate(specificPokemonDetails);
-  const smallPokemonCard = document.getElementById("pokemonCardId" + specificPokemonDetails.id);
-  smallPokemonCard.classList.add("small_pokemon_card_search_success");
+  addSearchResultCard(specificPokemonDetails);
   pokemonSection.innerHTML += getSuccessSearchResultTemplate();
 }
 

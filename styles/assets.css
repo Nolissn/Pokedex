@@ -405,6 +405,32 @@
   text-align: center;
 }
 
+.small_pokemon_card_exact_match {
+  outline: 3px solid var(--action_color);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.pokemon_section_partial_match {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: clamp(268px, calc(78.063vw + 18.2px), 1267.2px);
+  width: 100%;
+  height: fit-content;
+  background-color: var(--secondary_color);
+  border-radius: 16px;
+  padding: clamp(32px, calc(2.5vw + 24px), 64px);
+  row-gap: clamp(10px, calc(1.71875vw + 4.5px), 32px);
+  column-gap: clamp(6.666px, calc(0.7292vw + 4.333px), 16px);
+}
+
+.pokemon_section_partial_match .search_success_text {
+  width: 100%;
+  margin-bottom: 0;
+}
+
 .pokemon_section_search_fail {
   display: flex;
   justify-content: center;
