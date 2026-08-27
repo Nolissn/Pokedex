@@ -132,7 +132,7 @@
   font-size: 16px;
   font-weight: 400;
   height: 22px;
-  width: clamp(72px, calc(3.0789vw + 22.737px), 90px);
+  width: 74px;
   border-radius: 3px;
   display: flex;
   justify-content: center;
@@ -156,6 +156,18 @@
 
 .load_more_button:hover {
   background-color: var(--action_color);
+}
+
+.go_back_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.go_back_button_icon {
+  width: 16px;
+  height: 16px;
 }
 
 .loading_screen_dialog {
@@ -193,9 +205,11 @@
 .pokemon_details_dialog {
   border: none;
   margin: auto;
-  height: fit-content;
   max-width: clamp(290px, calc(100vw - 30px), 1000px);
   width: 100%;
+  max-height: 80vh;
+  min-height: fit-content;
+  height: clamp(460px, calc(61.364vw + 263.64px), 1000px);
   border-radius: 16px;
   padding: 0 0 0 0;
   overflow: hidden;
@@ -370,6 +384,11 @@
   justify-content: center;
   align-items: center;
   transition: background-color 0.2s ease;
+}
+
+.big_card_nav_bar_button:disabled {
+  pointer-events: none;
+  opacity: 0.35;
 }
 
 .big_card_nav_image {

@@ -38,7 +38,11 @@ function getPokemonCardInSectionTemplate(pokemonDetails) {
     ></dialog>`;
 }
 
-function getPokemonDetailsDialogTemplate(specificPokemonDetails) {
+function getPokemonDetailsDialogTemplate(
+  specificPokemonDetails,
+  navBarCounterText,
+  isNavBarLocked,
+) {
   return `
     <button
       onclick="this.closest('dialog').close()"
@@ -179,6 +183,7 @@ function getPokemonDetailsDialogTemplate(specificPokemonDetails) {
           data-id="prev-button"
           aria-label="Previous Pokémon"
           class="big_card_nav_bar_button ${specificPokemonDetails.types[0].type.name}"
+          ${isNavBarLocked ? "disabled" : ""}
         >
           <img
             class="big_card_nav_image"
@@ -187,13 +192,14 @@ function getPokemonDetailsDialogTemplate(specificPokemonDetails) {
           />
         </button>
         <p class="big_card_nav_id_text">
-          ${specificPokemonDetails.id.toString()}/1025
+          ${navBarCounterText}
         </p>
         <button
           onclick="renderNextPokemonDialog(${specificPokemonDetails.id}, this)"
           data-id="next-button"
           aria-label="Next Pokémon"
           class="big_card_nav_bar_button ${specificPokemonDetails.types[0].type.name}"
+          ${isNavBarLocked ? "disabled" : ""}
         >
           <img
             class="big_card_nav_image"
@@ -241,13 +247,30 @@ function getPartialMatchResultTemplate() {
   >`;
 }
 
+function getLoadMoreButtonTemplate() {
+  return `<button
+    id="loadMoreButtonId"
+    onclick="loadNextPokemons()"
+    data-id="load-more-button"
+    aria-label="Load more Pokémon"
+    class="load_more_button"
+  >
+    Load more
+  </button>`;
+}
+
 function getRefreshPageButtonTemplate() {
   return `<button
     id="refreshButtonId"
-    onclick="location.reload()"
-    aria-label="Refresh page"
-    class="load_more_button"
+    onclick="goBackToPokemonSection()"
+    aria-label="Go back"
+    class="load_more_button go_back_button"
   >
-    Refresh Page
+    <img
+      class="go_back_button_icon"
+      src="./assets/SVG/arrow-left.svg"
+      alt=""
+    />
+    Go back
   </button>`;
 }
