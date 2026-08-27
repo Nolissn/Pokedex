@@ -205,11 +205,22 @@ function renderPokemonDetailsDialog(specificPokemonDetails, currentDialog) {
   );
 }
 
+function showErrorDialog(errorMessage) {
+  const errorDialog = document.getElementById("errorDialogId");
+  errorDialog.innerHTML = getErrorDialogTemplate(errorMessage);
+  errorDialog.showModal();
+}
+
+function closeErrorDialog() {
+  const errorDialog = document.getElementById("errorDialogId");
+  errorDialog.close();
+}
+
 function isValidInputLength(rawInput) {
   if (rawInput.length >= 3 && rawInput.length <= 27) {
     return true;
   }
-  alert("Please enter between 3 and 27 characters!");
+  showErrorDialog("Please enter between 3 and 27 characters!");
   return false;
 }
 
@@ -218,7 +229,7 @@ function parseValidPokemonNumber(rawInput) {
   if (rawInputNumber >= 1 && rawInputNumber <= 1025) {
     return rawInputNumber;
   }
-  alert(
+  showErrorDialog(
     `Please enter a number with a total value between 1 and 1025. "${rawInputNumber}" isn't valid`,
   );
   return false;
@@ -232,7 +243,7 @@ function validateUserInput(rawInput) {
     return parseValidPokemonNumber(rawInput);
   }
   if (/^[^a-zA-Z0-9]/.test(rawInput)) {
-    alert("Special characters can not be used like that!");
+    showErrorDialog("Special characters can not be used like that!");
     return false;
   }
   return rawInput.toLowerCase();

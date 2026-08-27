@@ -213,6 +213,25 @@ function getPokemonDetailsDialogTemplate(
   `;
 }
 
+function getErrorDialogTemplate(errorMessage) {
+  return `
+    <img
+      class="error_dialog_icon"
+      src="./assets/SVG/search_fail_pikachu.svg"
+      alt=""
+    />
+    <p data-id="error-message" class="error_dialog_text">${errorMessage}</p>
+    <button
+      onclick="closeErrorDialog()"
+      data-id="error-dialog-button"
+      aria-label="Close error message"
+      class="error_dialog_button"
+    >
+      OK
+    </button>
+  `;
+}
+
 function getSearchFailResultTemplate(statusCode, userInput) {
   return `
     <div class="search_fail_content_positioning_div">
